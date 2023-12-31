@@ -24,9 +24,61 @@
   - eg: https://url/endpoint/{path-parameter} - path-parameters are usually things with multiple options, like ids, usernames and very specific
   - Postman example url: https://bored-api.appbrewery.com/activity/3943506 < The number on the end corresponds with the "key" that can be returned as a response to identify a specific activity
 
-## JSON
+## JSON (JavaScript Object Notation):
+
+- A way of formatting data to send in a readable way.
+
+Example of JSON vs JS Object (from which it gets its name):
+
+- all keys must be within quotation marks ""
+
+```
+JSON:
+{
+    "name": "Paige",
+    "age": 31,
+    "city": "Cardiff",
+    "education": [
+        {
+            "degree": "Level 5 CS",
+            "university": "Code Institute",
+        }
+    ]
+}
+
+vs. JavaScript Object:
+
+const paige = {
+    name: "Paige",
+    age: 31,
+    city: "Cardiff",
+    education: [{
+        degree: "Level 5 CS",
+        university: "Code Institute"
+    }]
+}
+
+```
+
+- To make viewing JSON easier, use a viewer such as: [JSONViewer](https://jsonviewer.stack.hu)
+
+- In order to send things across the internet/server in a readable form, we need to use a serializer, such as the stringify() method:
+
+```
+const jsonData = JSON.stringify(data); (the data variable in the parameters is what represents the JS Object that needs to be serialized);
+```
+
+- The reverse, so to unpack the JSON into an object (parse()):
+
+```
+const data = JSON.parse(jsonData);
+```
+
+- Review the folder JSON's code to refresh your knowledge!
 
 ## Making Server-Side requests with Axios
+
+
 
 ## Authentication
 
