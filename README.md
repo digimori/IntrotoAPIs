@@ -78,7 +78,37 @@ const data = JSON.parse(jsonData);
 
 ## Making Server-Side requests with Axios
 
+- Use async/await here
+- Example setup for axios:
 
+```
+import axios from 'axios';
+
+app.get("/", asynce(req, res) => {
+  try {
+    const response = await axios.get("url/endpoint");
+    res.render("index.ejs", {activity: response.data});
+  } catch (error) {
+    console.error(`Failed to make request: ${error.message}`);
+    res.status(500).send("Failed to fetch Activity. Please try again.")
+  }
+});
+
+```
+
+Axios has a lot of its own Request aliases and parameters already set:
+
+```
+axios.request(config)
+axios.get(url[, config])
+axios.delete(url[, config])
+axios.head(url[, config])
+axios.options(url[, config])
+axios.post(url[, data[, config]])
+axios.put(url[, data[, config]])
+axios.patch(url[, data[, config]])
+
+```
 
 ## Authentication
 
