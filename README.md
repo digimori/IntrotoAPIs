@@ -112,6 +112,59 @@ axios.patch(url[, data[, config]])
 
 ## Authentication
 
+Authenticating yourself with the API Provider
+
+Authentication can come in four tiers (Not strictly a rule, but a simple way to think about it):
+
+- 0.  No Authentication (When there is no auth, API builders will often put in a rate limit to prevent too many requests instead - Usually a public API)
+
+- 1.  Basic Authentication (User:Pass locked. Like RapidAPI, where you need an account to use it - Encoded via Base64 in the header)
+
+Example using [Secrets API](https://secrets-api.appbrewery.com/)
+
+```
+// This gets 'all' of the data. Generally a starting point when we want to extract data.
+// Below, it is paginated (so only gives a set amount at a time), so you can request which page of data in particular that you need
+
+https://secrets-api.appbrewery.com/all?page=1
+
+```
+
+- To test this in Postman:
+
+  - Follow the steps in the docs to make a user/pass
+  - Make sure you're registering the username and password under the body > form format for the POST request
+  - Paste the request URL (https://secrets-api.appbrewery.com/all?page=1) into the GET request
+  - Under the Authorization tab, select Basic Auth
+  - A username and password must be provided; This will be hashed into Base64 when making the request.
+
+- 2.  API Key Authorisation
+- Keys are required to allow a user to use the API.
+- Often acquired through a 'generate-api-key' endpoint (Docs can vary, so always read them!)
+- example: https://secrets-api.appbrewery.com/generate-api-key
+
+This should return a response such as:
+
+```
+{
+  "apiKey":"generated-api-key"
+}
+```
+
+Often, when API keys are involved, a key needs to be passed with filters:
+
+- eg: https://secrets-api.appbrewery.com/filter?score=5&apiKey=b886c845-9989-43aa-8c60-ea4a669bb587
+
+- Sometimes in Postman, you will need to manually add this to the auth:
+- Authorization > Key/Value > Add to Query Params
+
+
+- 4. Token-Based Authentication
+- Requires login, which will generate a token to interact with the API instead.
+- Most common/industry standard as of writing is OAuth
+
+
+
 ## Rest APIs
 
 - Uses HTTP protocol to communicate (GET, POST, PUT, PATCH, DELETE)
